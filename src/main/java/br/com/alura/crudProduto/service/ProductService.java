@@ -1,0 +1,25 @@
+package br.com.alura.crudProduto.service;
+
+import br.com.alura.crudProduto.ProductRepository;
+import br.com.alura.crudProduto.dto.DadosCadastroProduto;
+import br.com.alura.crudProduto.dto.DadosDetalhamentoProduto;
+import br.com.alura.crudProduto.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@Service
+public class ProductService {
+    @Autowired
+    private ProductRepository productRepository;
+
+    public ResponseEntity createProduct(DadosCadastroProduto dadosCadastroProduto, UriComponentsBuilder uriBuilder) {
+        var product = new Product(dadosCadastroProduto);
+        productRepository.save(product);
+
+        var uri = uriBuilder.path("produto/{id}").buildAndExpand(product.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoProduto(product));
+    }
+}

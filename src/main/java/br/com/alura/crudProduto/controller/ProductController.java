@@ -1,7 +1,8 @@
 package br.com.alura.crudProduto.controller;
 
-import br.com.alura.crudProduto.service.UserService;
-import br.com.alura.crudProduto.dto.DadosCadastroUser;
+import br.com.alura.crudProduto.dto.DadosCadastroProduto;
+import br.com.alura.crudProduto.model.Product;
+import br.com.alura.crudProduto.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,15 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/admin")
-public class UserController {
-
+@RequestMapping("/produto")
+public class ProductController {
     @Autowired
-    private UserService adminService;
+    private ProductService service;
 
-    @PostMapping()
-    public ResponseEntity cadastrar(@RequestBody DadosCadastroUser dadosCadastroUser, UriComponentsBuilder uriBuilder) {
-        return adminService.cadastrar(dadosCadastroUser,uriBuilder);
+    @PostMapping
+    public ResponseEntity create(@RequestBody DadosCadastroProduto dadosCadastroProduto, UriComponentsBuilder uriBuilder) {
+        return service.createProduct(dadosCadastroProduto,uriBuilder);
     }
 
 }

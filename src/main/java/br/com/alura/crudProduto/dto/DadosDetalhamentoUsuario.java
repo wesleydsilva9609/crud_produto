@@ -1,4 +1,6 @@
-package br.com.alura.crudProduto;
+package br.com.alura.crudProduto.dto;
+
+import br.com.alura.crudProduto.model.User;
 
 public record DadosDetalhamentoUsuario(String username, String role) {
 

@@ -1,6 +1,6 @@
-package br.com.alura.crudProduto;
+package br.com.alura.crudProduto.model;
 
-import br.com.alura.crudProduto.controller.DadosCadastroUser;
+import br.com.alura.crudProduto.dto.DadosCadastroUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

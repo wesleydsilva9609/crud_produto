@@ -1,6 +1,9 @@
-package br.com.alura.crudProduto;
+package br.com.alura.crudProduto.service;
 
-import br.com.alura.crudProduto.controller.DadosCadastroUser;
+import br.com.alura.crudProduto.UserRepository;
+import br.com.alura.crudProduto.dto.DadosCadastroUser;
+import br.com.alura.crudProduto.dto.DadosDetalhamentoUsuario;
+import br.com.alura.crudProduto.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
