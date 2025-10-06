@@ -31,7 +31,13 @@ public class ProductController {
         return service.getallProduct(pageable);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity getProductById(@PathVariable Long id) {
+        return service.getProduct(id);
+    }
+
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity delete(@PathVariable Long id) {
         return service.deleteproduct(id);
     }

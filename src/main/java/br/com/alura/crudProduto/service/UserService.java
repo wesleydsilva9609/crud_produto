@@ -1,5 +1,6 @@
 package br.com.alura.crudProduto.service;
 
+
 import br.com.alura.crudProduto.UserRepository;
 import br.com.alura.crudProduto.dto.DadosCadastroUser;
 import br.com.alura.crudProduto.dto.DadosDetalhamentoUsuario;
@@ -14,6 +15,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
 
     public ResponseEntity cadastrar(DadosCadastroUser dadosCadastroUser, UriComponentsBuilder uriBuilder) {
         var user = new User(dadosCadastroUser);

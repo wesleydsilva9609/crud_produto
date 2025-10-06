@@ -32,10 +32,12 @@ public class ProductService {
     }
 
     public ResponseEntity deleteproduct(Long id) {
-        if(productRepository.existsById(id)) {
-            productRepository.deleteById(id);
-            ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+     var product = productRepository.getReferenceById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity getProduct(Long id) {
+        var product = productRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoProduto(product));
     }
 }
