@@ -1,5 +1,6 @@
 package br.com.alura.crudProduto.model;
 
+import br.com.alura.crudProduto.dto.DadosAtualizarProduto;
 import br.com.alura.crudProduto.dto.DadosCadastroProduto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,17 @@ public class Product {
         this.description = dadosCadastroProduto.descricao();
         this.price = dadosCadastroProduto.preco();
         this.stock = dadosCadastroProduto.quantidade();
+    }
+
+    public void atualizar(DadosAtualizarProduto dadosAtualizarProduto) {
+        if(dadosAtualizarProduto.nome() != null) {
+            this.name = dadosAtualizarProduto.nome();
+        }if(dadosAtualizarProduto.descricao() != null) {
+            this.description = dadosAtualizarProduto.descricao();
+        }if(dadosAtualizarProduto.preco() != 0){
+            this.price = dadosAtualizarProduto.preco();
+        }if(dadosAtualizarProduto.quantidade() != 0){
+            this.stock = dadosAtualizarProduto.quantidade();
+        }
     }
 }

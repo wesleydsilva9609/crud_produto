@@ -1,5 +1,6 @@
 package br.com.alura.crudProduto.controller;
 
+import br.com.alura.crudProduto.dto.DadosAtualizarProduto;
 import br.com.alura.crudProduto.dto.DadosCadastroProduto;
 import br.com.alura.crudProduto.dto.DadosListagemProduto;
 import br.com.alura.crudProduto.service.ProductService;
@@ -34,6 +35,12 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity getProductById(@PathVariable Long id) {
         return service.getProduct(id);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity update(@RequestBody DadosAtualizarProduto dadosAtualizarProduto) {
+        return service.updateproduct(dadosAtualizarProduto);
     }
 
     @DeleteMapping("/{id}")

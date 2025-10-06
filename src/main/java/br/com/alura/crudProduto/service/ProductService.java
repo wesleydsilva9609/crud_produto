@@ -1,6 +1,7 @@
 package br.com.alura.crudProduto.service;
 
 import br.com.alura.crudProduto.ProductRepository;
+import br.com.alura.crudProduto.dto.DadosAtualizarProduto;
 import br.com.alura.crudProduto.dto.DadosCadastroProduto;
 import br.com.alura.crudProduto.dto.DadosDetalhamentoProduto;
 import br.com.alura.crudProduto.dto.DadosListagemProduto;
@@ -38,6 +39,12 @@ public class ProductService {
 
     public ResponseEntity getProduct(Long id) {
         var product = productRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoProduto(product));
+    }
+
+    public ResponseEntity updateproduct(DadosAtualizarProduto dadosAtualizarProduto) {
+        var product = productRepository.getReferenceById(dadosAtualizarProduto.id());
+        product.atualizar(dadosAtualizarProduto);
         return ResponseEntity.ok(new DadosDetalhamentoProduto(product));
     }
 }
