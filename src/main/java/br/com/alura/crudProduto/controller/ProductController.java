@@ -6,6 +6,7 @@ import br.com.alura.crudProduto.dto.DadosListagemProduto;
 import br.com.alura.crudProduto.service.ProductService;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public class ProductController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity create(@RequestBody DadosCadastroProduto dadosCadastroProduto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity create(@Valid @RequestBody DadosCadastroProduto dadosCadastroProduto, UriComponentsBuilder uriBuilder) {
         return service.createProduct(dadosCadastroProduto,uriBuilder);
     }
 
