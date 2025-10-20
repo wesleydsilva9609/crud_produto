@@ -22,18 +22,20 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
+        return http
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(ssm -> ssm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(rqs ->
-                        rqs.requestMatchers("/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/login/cadastro").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/produto").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/produto").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.PUT, "/produto").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/produto").hasAnyRole("ADMIN","USER")
-                                .requestMatchers(HttpMethod.GET, "/produto/{id}").hasAnyRole("ADMIN", "USER")
-                                .anyRequest().authenticated())
-                .addFilterBefore(secutiryFilter, UsernamePasswordAuthenticationFilter.class).build();
+                .authorizeHttpRequests(rqs -> rqs
+                        .requestMatchers("/login", "/login/cadastro").permitAll()
+                        .requestMatchers("/v3/api-docs/**","/swagger-ui.html","swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/produto").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/produto").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/produto").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/produto", "/produto/{id}").hasAnyRole("ADMIN", "USER")
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(secutiryFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean

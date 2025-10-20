@@ -1,4 +1,4 @@
-package br.com.alura.crudProduto.infra;
+package br.com.alura.crudProduto.service;
 
 import br.com.alura.crudProduto.model.Usuario;
 import com.auth0.jwt.JWT;

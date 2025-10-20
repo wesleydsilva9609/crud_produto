@@ -1,6 +1,7 @@
 package br.com.alura.crudProduto.infra;
 
 import br.com.alura.crudProduto.UserRepository;
+import br.com.alura.crudProduto.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,21 +23,28 @@ public class SecutiryFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+
         var token = recuperarToken(request);
         System.out.println("chamando filtro");
-        if(token != null) {
+
+        if (token != null) {
             var subject = tokenService.VerifyToken(token);
             var user = userRepository.findByUsername(subject);
-            var authenticathion =  new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-
-            SecurityContextHolder.getContext().setAuthentication(authenticathion);
-
+            var authentication = new UsernamePasswordAuthenticationToken(
+                    user,
+                    null,
+                    user.getAuthorities()
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
 
         filterChain.doFilter(request, response);
     }
+
+
 
     private String recuperarToken(HttpServletRequest request) {
         var authorization = request.getHeader("Authorization");

@@ -6,7 +6,6 @@ import br.com.alura.crudProduto.dto.DadosCadastroUser;
 import br.com.alura.crudProduto.dto.DadosDetalhamentoUsuario;
 import br.com.alura.crudProduto.dto.DadosJWT;
 import br.com.alura.crudProduto.dto.Dadoslogin;
-import br.com.alura.crudProduto.infra.TokenService;
 import br.com.alura.crudProduto.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
